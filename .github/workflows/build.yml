@@ -31,8 +31,7 @@ jobs:
       name: run Trivy vulnerability scanner
       with:
         image-ref: "ghcr.io/${{ github.repository_owner }}/hugofruit/php"
-        format: 'template'
-        template: '@/contrib/sarif.tpl'
+        format: 'sarif'
         output: 'trivy-results.sarif'
         severity: 'CRITICAL,HIGH'
     - name: upload Trivy scan results to GitHub Security tab
