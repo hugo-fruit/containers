@@ -12,18 +12,18 @@ jobs:
     name: build base image for php
     steps:
     - uses: actions/checkout@v3
+    - uses: docker/login-action@v2
+      name: login to ghcr.io
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     - uses: docker/metadata-action@v4
       id: meta
       with:
         images: hugofruit/containers
         flavor: |
           latest=false
-#    - uses: docker/login-action@v2
-#      name: login to ghcr.io
-#      with:
-#        registry: ghcr.io
-#        username: ${{ github.actor }}
-#        password: ${{ secrets.GITHUB_TOKEN }}
     - run: echo ${{ steps.meta.outputs.tags }}
     - run: echo ${{ steps.meta.outputs.labels }}
 #    - uses: docker/build-push-action@v3
