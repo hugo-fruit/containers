@@ -6,7 +6,6 @@ on:
     tags-ignore: [ "*" ]
 
 jobs:
-
   php:
     runs-on: ubuntu-latest
     name: build base image for php
