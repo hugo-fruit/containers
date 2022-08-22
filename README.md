@@ -1,1 +1,1 @@
-- PHP: `ghcr.io/medius-pro/hugofruit/php`
+- PHP: [`ghcr.io/medius-pro/hugofruit/php`](https://ghcr.io/medius-pro/hugofruit/php)
