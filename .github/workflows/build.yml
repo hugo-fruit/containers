@@ -5,6 +5,11 @@ on:
     branches: [ "main" ]
     tags-ignore: [ "*" ]
 
+permissions:
+  contents: read
+  packages: write
+  security-events: write
+
 jobs:
   php:
     runs-on: ubuntu-latest
@@ -22,3 +27,15 @@ jobs:
         context: ./php
         push: true
         tags: ghcr.io/${{ github.repository_owner }}/hugofruit/php,ghcr.io/${{ github.repository_owner }}/hugofruit/php:8.1
+    - uses: aquasecurity/trivy-action@master
+      name: run Trivy vulnerability scanner
+      with:
+        image-ref: "ghcr.io/${{ github.repository_owner }}/hugofruit/php"
+        format: 'template'
+        template: '@/contrib/sarif.tpl'
+        output: 'trivy-results.sarif'
+        severity: 'CRITICAL,HIGH'
+    - name: upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        sarif_file: 'trivy-results.sarif'
