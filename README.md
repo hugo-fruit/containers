@@ -1,1 +1,1 @@
-- PHP: `ghcr.io/medius-pro/hugofruit/containers:php`
+- PHP: `ghcr.io/medius-pro/hugofruit/php`
