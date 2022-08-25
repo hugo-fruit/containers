@@ -26,15 +26,4 @@ jobs:
       with:
         context: ./php
         push: true
-        tags: ghcr.io/${{ github.repository_owner }}/hugofruit/php,ghcr.io/${{ github.repository_owner }}/hugofruit/php:8.1
-    - uses: aquasecurity/trivy-action@master
-      name: run Trivy vulnerability scanner
-      with:
-        image-ref: "ghcr.io/${{ github.repository_owner }}/hugofruit/php"
-        format: 'sarif'
-        output: 'trivy-results.sarif'
-        severity: 'CRITICAL,HIGH'
-    - name: upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@v2
-      with:
-        sarif_file: 'trivy-results.sarif'
+        tags: ghcr.io/${{ github.repository_owner }}/php,ghcr.io/${{ github.repository_owner }}/php:8.1
